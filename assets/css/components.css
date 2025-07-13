@@ -15,6 +15,30 @@
     font-size: var(--font-size-base);
 }
 
+.btn-accent {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+    font-weight: var(--font-weight-bold);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.btn-accent:hover {
+    background: var(--color-accent-dark, #1e90ff);
+    border-color: var(--color-accent-dark, #1e90ff);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(30,144,255,0.15);
+}
+
+.btn-download {
+    margin-left: 0.5em;
+    transition: var(--transition-base);
+}
+.btn-accent:hover .btn-download {
+    transform: translateY(3px);
+}
+
 .btn-primary {
     background: var(--color-primary);
     color: white;
@@ -26,6 +50,7 @@
     border-color: var(--color-primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+    animation: buttonGlow 2s ease-in-out infinite;
 }
 
 .btn-secondary {
@@ -511,7 +536,7 @@
 
 .metric-card.highlight-card {
     border: 2px solid var(--color-primary);
-    background: linear-gradient(135deg, var(--color-surface) 0%, rgba(44, 95, 124, 0.05) 100%);
+    background: var(--color-surface);
 }
 
 .metric-icon {

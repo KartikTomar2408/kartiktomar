@@ -371,7 +371,7 @@ class AnimationController {
         // Skip on mobile for performance
         if (utils.device.isMobile()) return;
 
-        const particleCount = 20;
+        const particleCount = 30;
         const particles = [];
 
         for (let i = 0; i < particleCount; i++) {
@@ -380,8 +380,42 @@ class AnimationController {
             particles.push(particle);
         }
 
+        // Create additional floating orbs for enhanced effect
+        this.createFloatingOrbs(particleContainer);
+
         // Animate particles
         this.animateParticles(particles);
+    }
+
+    // Create floating orbs for enhanced background effect
+    createFloatingOrbs(container) {
+        const orbCount = 5;
+        
+        for (let i = 0; i < orbCount; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'floating-orb';
+            
+            const size = utils.randomBetween(20, 40);
+            const x = utils.randomBetween(0, 100);
+            const y = utils.randomBetween(0, 100);
+            const duration = utils.randomBetween(15, 30);
+            const delay = utils.randomBetween(0, 10);
+            
+            orb.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: radial-gradient(circle, rgba(44, 95, 124, 0.1) 0%, transparent 70%);
+                border-radius: 50%;
+                left: ${x}%;
+                top: ${y}%;
+                animation: floatingOrbs ${duration}s ease-in-out infinite;
+                animation-delay: ${delay}s;
+                pointer-events: none;
+            `;
+            
+            container.appendChild(orb);
+        }
     }
 
     // Create individual particle
@@ -390,22 +424,24 @@ class AnimationController {
         particle.className = 'particle';
         
         // Random properties
-        const size = utils.randomBetween(2, 6);
+        const size = utils.randomBetween(2, 8);
         const x = utils.randomBetween(0, 100);
         const y = utils.randomBetween(0, 100);
         const duration = utils.randomBetween(20, 40);
+        const opacity = utils.randomBetween(0.1, 0.3);
         
         particle.style.cssText = `
             position: absolute;
             width: ${size}px;
             height: ${size}px;
-            background: var(--color-primary);
+            background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
             border-radius: 50%;
             left: ${x}%;
             top: ${y}%;
-            opacity: 0.1;
-            animation: particleFloat ${duration}s ease-in-out infinite;
+            opacity: ${opacity};
+            animation: particleFloatEnhanced ${duration}s ease-in-out infinite;
             animation-delay: ${utils.randomBetween(0, 20)}s;
+            pointer-events: none;
         `;
 
         return particle;
