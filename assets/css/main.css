@@ -29,6 +29,18 @@
     line-height: var(--line-height-tight);
 }
 
+/* Glassmorphism background for text sections */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 2rem;
+  transition: background 0.3s;
+}
+
 .section-subtitle {
     font-size: var(--font-size-lg);
     color: var(--color-text-light);
